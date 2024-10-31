@@ -5,11 +5,11 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "/ViewController", value = "bbs/view.do")
-public class ViewController extends HttpServlet {
+@WebServlet(name = "/DeleteController", value = "/bbs/delete.do")
+public class DeleteController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/views/bbs/view.jsp").forward(req, res);
+        req.getRequestDispatcher("/WEB-INF/views/bbs/delete.jsp").forward(req, res);
     }
 
     @Override

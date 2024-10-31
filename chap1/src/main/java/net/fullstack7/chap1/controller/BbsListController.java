@@ -9,13 +9,13 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "/BbsListController", value = "bbs/list.do")
+@WebServlet(name = "/BbsListController", value = "/bbs/list.do")
 
 public class BbsListController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         List<BbsDTO> bbsDTOList = BbsService.INSTANCE.getList();
-        req.setAttribute("bbsDTOList", bbsDTOList);
+        req.setAttribute("list", bbsDTOList);
 
         System.out.println("=====================================");
         System.out.println("Bbs" +bbsDTOList);
