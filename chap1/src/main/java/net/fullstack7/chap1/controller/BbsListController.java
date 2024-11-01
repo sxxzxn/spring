@@ -14,14 +14,14 @@ import java.util.List;
 public class BbsListController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        List<BbsDTO> bbsDTOList = BbsService.INSTANCE.getList();
-        req.setAttribute("list", bbsDTOList);
-
-        System.out.println("=====================================");
-        System.out.println("Bbs" +bbsDTOList);
-        System.out.println("=====================================");
-
-        req.getRequestDispatcher("/WEB-INF/views/bbs/list.jsp").forward(req, res);
+//        List<BbsDTO> bbsDTOList = BbsService.INSTANCE.getList();
+//        req.setAttribute("list", bbsDTOList);
+//
+//        System.out.println("=====================================");
+//        System.out.println("Bbs" +bbsDTOList);
+//        System.out.println("=====================================");
+//
+//        req.getRequestDispatcher("/WEB-INF/views/bbs/list.jsp").forward(req, res);
     }
 
     @Override
