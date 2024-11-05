@@ -52,12 +52,12 @@ public enum BbsService {
                 vo -> modelMapper.map(vo, BbsDTO.class)
         ).collect(Collectors.toList());
 
-        log.info("===============================================");
-        log.info("BbsService::start");
-        log.info("list : "+list);
-        log.info("dtolist : "+dtoList);
-        log.info("BbsService::end");
-        log.info("===============================================");
+//        log.info("===============================================");
+//        log.info("BbsService::start");
+//        log.info("list : "+list);
+//        log.info("dtolist : "+dtoList);
+//        log.info("BbsService::end");
+//        log.info("===============================================");
         return dtoList;
     }
     public int regist(BbsDTO dto) throws Exception{
