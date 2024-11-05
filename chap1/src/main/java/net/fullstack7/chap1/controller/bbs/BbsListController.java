@@ -1,13 +1,9 @@
-package net.fullstack7.chap1.controller;
-
-import net.fullstack7.chap1.dto.BbsDTO;
-import net.fullstack7.chap1.service.BbsService;
+package net.fullstack7.chap1.controller.bbs;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet(name = "/BbsListController", value = "/bbs/list.do")
 

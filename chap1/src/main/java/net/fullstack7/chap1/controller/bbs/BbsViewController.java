@@ -1,4 +1,4 @@
-package net.fullstack7.chap1.controller;
+package net.fullstack7.chap1.controller.bbs;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

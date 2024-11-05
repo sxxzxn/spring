@@ -5,8 +5,9 @@
   <title>JSP - Hello World</title>
 </head>
 <body>
-<h1><%= "Hello World!" %></h1>
 <br/>
+<li><a href="login/login.do">로그인</a></li>
+<li><a href="member/list.do">회원목록</a></li>
 <li><a href="/bbs/list.do">리스트</a> </li>
 <li><a href="/bbs/regist.do">등록</a> </li>
 <li><a href="/bbs/modify.do">수정</a> </li>
