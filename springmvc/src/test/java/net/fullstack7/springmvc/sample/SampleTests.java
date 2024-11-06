@@ -9,6 +9,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import javax.sql.DataSource;
+import java.sql.Connection;
+
 
 @Log4j2
 @ExtendWith(SpringExtension.class)
@@ -21,6 +24,17 @@ public class SampleTests {
     @Test
     public void testService() {
         Assertions.assertNotNull(sampleService);
+    }
+
+    @Autowired
+    private DataSource dateSource;
+    // root-context.xml에서 DataSource 찾아서 사용하기
+    @Test
+    public void testConnection() throws Exception {
+        Connection conn = dateSource.getConnection();
+        Assertions.assertNotNull(conn);
+        conn.close();
+
     }
 
 
