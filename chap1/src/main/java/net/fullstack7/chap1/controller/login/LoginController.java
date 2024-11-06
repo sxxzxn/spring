@@ -15,8 +15,15 @@ public class LoginController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private CommonUtil cUtil = new CommonUtil();
 
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        String saveId = cUtil.getCookiesInfo(req, "saveId");
+        String savedId = cUtil.getCookiesInfo(req, "savedId");
+        if (saveId.isEmpty()) {
+            saveId = req.getParameter("saveId");
+
+        }
         req.getRequestDispatcher("/WEB-INF/views/login/login.jsp").forward(req, res);
     }
 
@@ -27,7 +34,7 @@ public class LoginController extends HttpServlet {
         String saveId = req.getParameter("saveId");
         String autoLogin = req.getParameter("autoLogin");
 
-        if (saveId.equals("Y")) {
+        if (! saveId.trim().isEmpty() && saveId.equals("Y")) {
             cUtil.setCookiesInfo(req, res, "/", 60, "", "saveIdFlag", saveId);
             cUtil.setCookiesInfo(req, res, "/", 60, "", "savedId", memberId);
         } else {
@@ -36,11 +43,14 @@ public class LoginController extends HttpServlet {
                 cUtil.setCookiesInfo(req, res, "/", -1442, "", "savedId", "");
         }
 
+            if(!autoLogin.trim().isEmpty() && autoLogin.equals("Y")) {
 
+            }
 
         try {
             MemberDTO dto = LoginService.INSTANCE.loginInfo(memberId, pwd);
             if (dto != null) {
+
                 HttpSession session = req.getSession();
                 session.setAttribute("memberId", memberId);
                 session.setAttribute("memberInfo", dto);

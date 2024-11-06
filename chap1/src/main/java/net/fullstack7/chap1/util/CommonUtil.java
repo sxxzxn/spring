@@ -30,4 +30,9 @@ public class CommonUtil {
 
         return "";
     }
+    public String makeUuid() {
+        return makeUuid();
+    }
+
+
 }

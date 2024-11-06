@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>로그인</title>
@@ -29,11 +30,12 @@
         <tr>
             <td  colspan="2" class="">
                 <label for="saveId">아이디저장</label>
-                <input type="checkbox" name="saveId"  id="saveId" value="Y">
+                <input type="checkbox" name="saveId"  id="saveId" value=<c:if test="${saveId eq 'Y'}" >'Y'</c:if>>
                 &nbsp; <label for="autoLogin">자동로그인</label>
                 <input type="checkbox" name="autoLogin"  id="autoLogin" value="Y">
             </td>
         </tr>
+
         <tr>
             <td  colspan="2" class="">
                 <input type="submit" name="btnLogin"  value="로그인">
