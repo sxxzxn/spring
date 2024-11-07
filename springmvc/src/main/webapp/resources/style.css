@@ -1,0 +1,49 @@
+table, thead, tbody, th, tr,td{
+    border: solid 1px black;
+    border-collapse: collapse;
+}
+th{
+    text-align: center;
+    width: 120px;
+    height: 20px;
+    background-color: lightgray;
+
+}
+.input_col{
+    width: 300px;
+    height: 20px;
+}
+.input_box{
+    width: 400px;
+    height: 20px;
+    margin: 2px;
+}
+
+.input_box_id{
+    width: 200px;
+    height: 20px;
+    margin: 2px;
+}
+
+.input_box_jumin{
+    width: 120px;
+    height: 20px;
+    margin: 2px;
+}
+
+.input_box_addr{
+    width: 120px;
+    height: 20px;
+    margin: 2px;
+}
+
+.input_title{
+    text-align: center;
+    width: 120px;
+    height: 20px;
+    background-color: gray;
+}
+.aligin-center{
+    text-align: center;
+    margin:2px;
+}
