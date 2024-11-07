@@ -64,12 +64,10 @@ public class BbsServiceImpl implements BbsServiceIf{
     public void modify(BbsDTO dto) {
         BbsVO vo = modelMapper.map(dto, BbsVO.class);
         bbsXmlMapper.modify(vo);
-
     }
 
     @Override
     public void delete(int idx) {
         bbsXmlMapper.delete(idx);
-
     }
 }

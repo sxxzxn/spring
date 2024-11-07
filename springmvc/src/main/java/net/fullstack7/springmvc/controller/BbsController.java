@@ -105,7 +105,9 @@ public class BbsController {
     }
 
     @GetMapping("/modify.do")
-    public String modify(){
+    public String modify(BbsDTO bbsDTO, Model model){
+        bbsService.modify(bbsDTO);
+        model.addAttribute("bbsDTO", bbsDTO);
 
         log.info("======================");
         log.info("modify");
@@ -115,7 +117,10 @@ public class BbsController {
     }
 
     @PostMapping("/modify.do")
-    public String modifyOk(){
+    public String modifyOk(BbsDTO bbsDTO, Model model){
+        bbsService.modify(bbsDTO);
+        model.addAttribute("bbsDTO", bbsDTO);
+
 
         log.info("======================");
         log.info("modifyOk");
