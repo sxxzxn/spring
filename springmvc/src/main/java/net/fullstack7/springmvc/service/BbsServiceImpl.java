@@ -6,7 +6,6 @@ import lombok.extern.log4j.Log4j2;
 import net.fullstack7.springmvc.domain.BbsVO;
 import net.fullstack7.springmvc.dto.BbsDTO;
 import net.fullstack7.springmvc.mapper.BbsMapper;
-import net.fullstack7.springmvc.util.MapperUtil;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +22,8 @@ public class BbsServiceImpl implements BbsServiceIf{
 
     @Override
     public int totalCount() {
+
+
         return 0;
     }
 
@@ -43,28 +44,32 @@ public class BbsServiceImpl implements BbsServiceIf{
 
     @Override
     public BbsDTO view(int idx) {
-        log.info("===============================");
-        log.info("BbsServiceImpl >> view gogogoo");
+//        log.info("===============================");
+//        log.info("BbsServiceImpl >> view gogogoo");
         BbsVO vo = bbsXmlMapper.view(idx);
         BbsDTO dto = modelMapper.map(vo, BbsDTO.class);
-        log.info("vo : " + vo);
-        log.info("BbsServiceImpl >> view end");
-        log.info("===============================");
+//        log.info("vo : " + vo);
+//        log.info("BbsServiceImpl >> view end");
+//        log.info("===============================");
         return dto;
     }
 
     @Override
     public void regist(BbsDTO dto) {
-
+        BbsVO vo = modelMapper.map(dto, BbsVO.class);
+        bbsXmlMapper.regist(vo);
     }
 
     @Override
     public void modify(BbsDTO dto) {
+        BbsVO vo = modelMapper.map(dto, BbsVO.class);
+        bbsXmlMapper.modify(vo);
 
     }
 
     @Override
     public void delete(int idx) {
+        bbsXmlMapper.delete(idx);
 
     }
 }

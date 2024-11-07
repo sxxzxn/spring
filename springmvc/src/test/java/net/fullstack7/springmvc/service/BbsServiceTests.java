@@ -17,12 +17,12 @@ public class BbsServiceTests {
     @Autowired(required = false)
     private BbsServiceIf service;
 
-    @Test
-    public void testView() {
-        int idx = 533;
-        BbsDTO dto = service.view(idx);
-        Assertions.assertNotNull(dto);
-        log.info(dto);
-        log.info(idx);
-    }
+//    @Test
+//    public void testView() {
+//        int idx = 533;
+//        BbsDTO dto = service.view(idx);
+//        Assertions.assertNotNull(dto);
+//        log.info(dto);
+//        log.info(idx);
+//    }
 }

@@ -53,37 +53,50 @@ public class BbsController {
         return "bbs/list";
     }
 
-    @GetMapping("/view.do")
-    public String view(
-            @RequestParam int idx
-            , @RequestParam(defaultValue = "1") int pageNo
-            , @RequestParam(defaultValue = "10") int pageSize
-            , @RequestParam(defaultValue = "idx") String sortField
-            , @RequestParam(defaultValue = "ASC") String sortOrder
-    ){
-        log.info("======================");
-        log.info("view");
-        log.info("idx: " + idx);
-        log.info("pageNo: " + pageNo);
-        log.info("pageSize: " + pageSize);
-        log.info("sortField: " + sortField);
-        log.info("sortOrder: " + sortOrder);
-        log.info("======================");
+//    @GetMapping("/view.do")
+//    public String view(
+//            @RequestParam int idx
+//            , @RequestParam(defaultValue = "1") int pageNo
+//            , @RequestParam(defaultValue = "10") int pageSize
+//            , @RequestParam(defaultValue = "idx") String sortField
+//            , @RequestParam(defaultValue = "ASC") String sortOrder
+//    ){
+//        log.info("======================");
+//        log.info("view");
+//        log.info("idx: " + idx);
+//        log.info("pageNo: " + pageNo);
+//        log.info("pageSize: " + pageSize);
+//        log.info("sortField: " + sortField);
+//        log.info("sortOrder: " + sortOrder);
+//        log.info("======================");
+//
+//        return "bbs/view";
+//    }
 
+    @GetMapping("/view.do")
+    public String view(int idx, Model model){
+        BbsDTO bbsDTO = bbsService.view(idx);
+        model.addAttribute("bbsDTO", bbsDTO);
         return "bbs/view";
     }
 
+
     @GetMapping("/regist.do")
-    public String regist(BbsDTO bbsDTO, Model model){
-        log.info("======================");
-        log.info("regist");
-        log.info("======================");
+    public String regist(){
+
+//        log.info("======================");
+//        log.info("regist");
+//        log.info("======================");
 
         return "bbs/regist";
     }
 
     @PostMapping("/regist.do")
-    public String registOk(){
+    public String registOk(BbsDTO bbsDTO, Model model){
+
+        bbsService.regist(bbsDTO);
+        model.addAttribute("bbsDTO", bbsDTO);
+
         log.info("======================");
         log.info("registOk");
         log.info("======================");
@@ -93,6 +106,7 @@ public class BbsController {
 
     @GetMapping("/modify.do")
     public String modify(){
+
         log.info("======================");
         log.info("modify");
         log.info("======================");
@@ -102,6 +116,7 @@ public class BbsController {
 
     @PostMapping("/modify.do")
     public String modifyOk(){
+
         log.info("======================");
         log.info("modifyOk");
         log.info("======================");

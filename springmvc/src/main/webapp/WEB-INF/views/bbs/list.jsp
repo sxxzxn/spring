@@ -16,12 +16,11 @@
 <h2>게시판 목록</h2>
 <form id="deleteForm" >
 <table>
-    <button id = "btnRegist">게시글 등록</button>
+    <button id = "btnRegist" onclick="goRegist()">게시글 등록</button>
     <button id = "btnDelete" onclick="deleteSelected()">게시글 삭제</button>
     <thead>
     <tr>
-        <th>선택<input type="checkbox" class="checkA" name="check1" onclick="allCheck(this)">
-        </th>
+        <th><input type="checkbox" class="checkA" name="check1" onclick="allCheck(this)"></th>
         <th>번호</th>
         <th>제목</th>
         <th>작성자</th>
@@ -84,6 +83,10 @@ function deleteSelected() {
     // form.method="post"
     <%--form.action = `${contextPath}/bbs/delete.do`;--%>
     <%--form.submit();--%>
+}
+
+function goRegist(){
+    location.href = "regist.do"
 }
 </script>
 </body>
