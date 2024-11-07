@@ -14,7 +14,7 @@
 <!--    <bean class="net.fullstack7.springmvc.sample.SampleService" />-->
 
 <!--    위에거한번에-->
-    <context:component-scan base-package="net.fullstack7.springmvc" />
+    <context:component-scan base-package="net.fullstack7.springmvc.sample" />
 
 
 
@@ -40,5 +40,8 @@
     </bean>
 
     <mybatis:scan base-package="net.fullstack7.springmvc.mapper"/>
+    <context:component-scan base-package="net.fullstack7.springmvc.config" />
+    <context:component-scan base-package="net.fullstack7.springmvc.controller" />
+    <context:component-scan base-package="net.fullstack7.springmvc.service" />
 
 </beans>
