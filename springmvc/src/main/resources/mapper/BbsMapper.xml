@@ -28,5 +28,12 @@
     <delete id="delete">
         DELETE FROM tbl_bbs WHERE idx = #{idx}
     </delete>
-
+    <update id="addReadCnt">
+        UPDATE  tbl_bbs SET readCnt = readCnt + 1 WHERE idx = #{idx}
+    </update>
+  <!--  아이디별로 한번만-->
+<!--    <update id="addReadCnt">-->
+<!--        UPDATE  tbl_bbs SET readCnt = readCnt + 1 WHERE idx = #{idx}-->
+<!--        and memberId Not In (select * from tbl_bbs_history) WHERE memberId = #{memberId}-->
+<!--    </update>-->
 </mapper>

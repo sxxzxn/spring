@@ -1,6 +1,5 @@
 package net.fullstack7.springmvc.service;
 
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import net.fullstack7.springmvc.domain.BbsVO;
@@ -22,9 +21,7 @@ public class BbsServiceImpl implements BbsServiceIf{
 
     @Override
     public int totalCount() {
-
-
-        return 0;
+        return bbsXmlMapper.totalCount();
     }
 
     @Override
@@ -54,6 +51,7 @@ public class BbsServiceImpl implements BbsServiceIf{
         return dto;
     }
 
+
     @Override
     public void regist(BbsDTO dto) {
         BbsVO vo = modelMapper.map(dto, BbsVO.class);
@@ -66,8 +64,14 @@ public class BbsServiceImpl implements BbsServiceIf{
         bbsXmlMapper.modify(vo);
     }
 
+
     @Override
     public void delete(int idx) {
         bbsXmlMapper.delete(idx);
+    }
+
+    @Override
+    public void addReadCnt(int idx) {
+        bbsXmlMapper.addReadCnt(idx);
     }
 }

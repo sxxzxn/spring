@@ -1,5 +1,6 @@
 package net.fullstack7.springmvc.service;
 
+import net.fullstack7.springmvc.domain.BbsVO;
 import net.fullstack7.springmvc.dto.BbsDTO;
 import org.springframework.stereotype.Service;
 
@@ -13,4 +14,5 @@ public interface BbsServiceIf {
     void regist(BbsDTO dto);
     void modify(BbsDTO dto);
     void delete(int idx);
+    void addReadCnt(int idx);
 }
