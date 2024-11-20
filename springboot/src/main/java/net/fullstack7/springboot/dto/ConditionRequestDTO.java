@@ -5,6 +5,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 @Log4j2
 @Builder
@@ -14,7 +20,37 @@ import lombok.extern.log4j.Log4j2;
 public class ConditionRequestDTO {
     private int page_no;
     private int page_size;
-    
+
     private String search_type;
     private String search_word;
+
+    private String strLink;
+    private String returnLink;
+
+    public String[] getSearch_type(){
+        return (search_type != null && !search_type.isEmpty() ? search_type.split("") : null);
+    }
+
+    public Pageable getPageable(String...params){
+        return PageRequest.of(this.page_no -1, this.page_size, Sort.by(params).ascending());
+    }
+
+    public String getReturnLink() {
+        if(returnLink == null && returnLink.isEmpty()){
+            StringBuffer sb = new StringBuffer();
+            sb.append("page_no = "+this.page_no);
+            sb.append("&page_size = "+this.page_size);
+
+            if(search_type != null && search_word != null){
+                try{
+                    sb.append("&search_type = " + URLEncoder.encode(search_type, "UTF-8"));
+                    sb.append("&search_word = " + URLEncoder.encode(search_word, "UTF-8"));
+                }catch (UnsupportedEncodingException e){
+                    e.printStackTrace();
+                }
+            }
+        }
+        return returnLink;
+    }
+
 }
