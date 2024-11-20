@@ -44,6 +44,24 @@ public class BoardServiceTests {
 
     @Test
     public void testModify() {
-        
+        int idx = 10;
+        Board board = Board.builder()
+                .idx(idx)
+                .memberId("user2")
+                .title("테스트 22")
+                .content(" 테스트 내요오옹")
+                .displayDate("2024-11-22")
+                .build();
+        log.info("board {}",board);
     }
+
+
+    @Test
+    public void testDelete() {
+        int idx = 1;
+        boardService.delete(idx);
+        log.info("idx {}",idx);
+
+    }
+
 }

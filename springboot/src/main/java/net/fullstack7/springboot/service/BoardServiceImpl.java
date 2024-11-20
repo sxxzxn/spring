@@ -42,7 +42,7 @@ public class BoardServiceImpl implements BoardServiceIf{
     }
 
     @Override
-    public int delete(int idx) {
-        return 0;
+    public void delete(int idx) {
+        boardRepository.deleteById(idx);
     }
 }
