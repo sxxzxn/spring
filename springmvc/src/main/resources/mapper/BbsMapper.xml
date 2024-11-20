@@ -12,6 +12,12 @@
         FROM tbl_bbs
         ORDER BY idx DESC
     </select>
+    <select id="listByPage" resultType="net.fullstack7.springmvc.domain.BbsVO">
+        SELECT  *
+        FROM tbl_bbs
+        ORDER BY idx DESC
+        LIMIT #{page_skip_count}, #{page_size}
+    </select>
     <select id="view" resultType="net.fullstack7.springmvc.domain.BbsVO">
         SELECT *
         FROM tbl_bbs

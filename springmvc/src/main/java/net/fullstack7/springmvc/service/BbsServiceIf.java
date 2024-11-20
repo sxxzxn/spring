@@ -1,15 +1,15 @@
 package net.fullstack7.springmvc.service;
 
-import net.fullstack7.springmvc.domain.BbsVO;
 import net.fullstack7.springmvc.dto.BbsDTO;
-import org.springframework.stereotype.Service;
+import net.fullstack7.springmvc.dto.PageRequestDTO;
+import net.fullstack7.springmvc.dto.PageResponseDTO;
 
-import java.security.PublicKey;
 import java.util.List;
 
 public interface BbsServiceIf {
     public int totalCount();
     public List<BbsDTO> list();
+    public PageResponseDTO<BbsDTO> listByPage(PageRequestDTO requestDTO);
     public BbsDTO view(int idx);
     void regist(BbsDTO dto);
     void modify(BbsDTO dto);

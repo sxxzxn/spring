@@ -31,7 +31,7 @@ public class PageRequestDTO {
     @Builder.Default
     @Positive
     @Min(value = 1)
-    private int total_pages = 1;
+    private int total_page = 1;
 
     @Builder.Default
     @PositiveOrZero
@@ -40,15 +40,15 @@ public class PageRequestDTO {
     @Builder.Default
     @Positive
     @Min(value = 1)
-    private int page_black_size = 10;
+    private int page_block_size = 10;
     @Builder.Default
     @Positive
     @Min(value = 1)
-    private int black_start = 1;
+    private int block_start = 1;
     @Builder.Default
     @Positive
     @Min(value = 1)
-    private int black_end = 1;
+    private int block_end = 1;
 
 //    private int first_page;
 //    private int last_page;

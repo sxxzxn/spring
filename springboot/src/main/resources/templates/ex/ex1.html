@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 id="h1" th:text="${msg}"></h1>
+<h1 id="h2" th:text="${age}"></h1>
+<!--<h2 th:with="num1=${10}, num2=${20}"></h2>-->
+<ul>
+  <li><b> 변수의선언 </b>
+    <ul th:with="num1=${10}, num2=${20}">
+      <li th:text="${num1}"></li>
+      <li th:text="${num2}"></li>
+    </ul>
+  </li>
+    <li> <b> 제어문 : if </b>
+        <ul th:with="num1=${10}, num2=${20}">
+            <li th:if="${num1 > num2}"
+                th:text="${num1}+' > ' + ${num2} + ' = ' + ${num1>num2}"></li>
+            <li th:if="${num1 < num2}"
+                th:text="${num1}+' < ' + ${num2} + ' = ' + ${num1<num2}"></li>
+        </ul>
+    </li>
+    <li> <b> 제어문 : unless </b>
+        <ul th:with="num1=${10}, num2=${20}">
+            <li th:unless="${num1 > num2}"
+                th:text="${num1}+' > ' + ${num2} + ' = ' + ${num1>num2}"></li>
+            <li th:unless="${num1 < num2}"
+                th:text="${num1}+' < ' + ${num2} + ' = ' + ${num1<num2}"></li>
+        </ul>
+    </li>
+    <li> <b> 제어문 : 삼항연산자 </b>
+        <ul th:with="num1=${10}, num2=${20}">
+            <li th:text="${num1 > num2} ? ${num1} : ${num2}"></li>
+            <li th:text="${num1 > num2} ? ${num1} : ${num2}"></li>
+        </ul>
+    </li>
+</ul>
+
+
+</body>
+</html>

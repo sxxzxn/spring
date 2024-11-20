@@ -3,6 +3,8 @@ package net.fullstack7.springmvc.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import net.fullstack7.springmvc.dto.BbsDTO;
+import net.fullstack7.springmvc.dto.PageRequestDTO;
+import net.fullstack7.springmvc.dto.PageResponseDTO;
 import net.fullstack7.springmvc.service.BbsServiceIf;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,10 +54,27 @@ public class BbsController {
 //        return "bbs/list";
 //    }
 
+    // 기본 리스트
+//    @GetMapping("/list.do")
+//    public String list(Model model){
+//        model.addAttribute("bbsList", bbsService.list());
+//        return "bbs/list";
+//    }
 
+    // 페이징 추가 버전
     @GetMapping("/list.do")
-    public String list(Model model){
-        model.addAttribute("bbsList", bbsService.list());
+    public String list(
+            @Valid PageRequestDTO pageRequestDTO,
+                    BindingResult bindingResult,
+                    RedirectAttributes redirectAttributes,
+                    Model model){
+
+        if(bindingResult.hasErrors()){
+            redirectAttributes.addFlashAttribute("errors", bindingResult);
+        }
+        PageResponseDTO responseDTO = bbsService.listByPage(pageRequestDTO);
+        log.info("컨트롤러 responseDTO" + responseDTO);
+        model.addAttribute("bbsList", responseDTO);
         return "bbs/list";
     }
 
