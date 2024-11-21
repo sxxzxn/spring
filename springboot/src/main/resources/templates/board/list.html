@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:layout="http://www.utreq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/basic.html}"
+      xmlns:th="http://www.thymeleaf.org">
+<div layout:fragment="content">
+    <h1>게시판 - 조회</h1>
+
+    <form action="/board/list" method="get">
+        <div class="col">
+            <input type="hidden" name="page_size" th:value="${responseDTO.page_size}">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <select class="form-select" name="search_type">
+                        <option value="t" th:selected="${requestDTO.search_type == 't'}">제목</option>
+                        <option value="c" th:selected="${requestDTO.search_type == 'c'}">내용</option>
+                        <option value="m" th:selected="${requestDTO.search_type == 'm'}">작성자</option>
+                    </select>
+                </div>
+                <input type="text" class="form-control" name="search_word" th:value="${requestDTO.search_word}">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary searchBtn" type="submit">검색</button>
+                    <button class="btn btn-outline-secondary clearBtn" type="button">취소</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">인덱스</th>
+                <th scope="col">제목</th>
+                <th scope="col">작성자</th>
+                <th scope="col">등록일</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="dto, status:${responseDTO.dtoList}">
+                <th scope="row" th:text="${dto.idx}"></th>
+                <td>
+                    <a th:href="@{/board/view(idx=${dto.idx})}" th:text="${dto.title}"></a>
+                </td>
+                <td th:text="${dto.memberId}"></td>
+                <td th:text="${dto.displayDate}"></td>
+            </tr>
+        <tr th:if="${responseDTO.total_count == 0}">
+            <td colspan="4">게시글이없습니다</td>
+        </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-primary" th:href="@{/board/regist}">등록</a>
+    <div th:if="${responseDTO.total_count > 0}">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item" ><a class="page-link"  th:href="@{/board/list(page_no=1)}">&langle; &langle;</a></li>
+                <li class="page-item" th:class="${responseDTO.prev_page_flag} ? '' : 'disabled'"><a class="page-link"  th:href="@{/board/list(page_no=${responseDTO.page_block_start - 1})}">&langle;</a></li>
+                <th:block th:each="i:${#numbers.sequence(responseDTO.page_block_start, responseDTO.page_block_end)}">
+                <li th:class="${responseDTO.page_no == i} ? ' page-item active':'page-item' ">
+                    <a class="page-link" th:data-num="${i}"  th:href="@{/board/list(page_no=${i})}">[[${i}]]</a>
+                </li>
+                </th:block>
+                <li class="page-item" th:class="${responseDTO.next_page_flag} ? '' : 'disabled'"><a class="page-link" th:href="@{/board/list(page_no=${responseDTO.page_block_end + 1})}">&rang;</a></li>
+                <li class="page-item"><a class="page-link" th:href="@{/board/list(page_no=${responseDTO.total_page})}">&rang; &rang;</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div th:if="${responseDTO.total_count == 0}">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link"  href="#">&langle; &langle;</a></li>
+                <li class="page-item" th:class="${responseDTO.prev_page_flag} ? '' : 'disabled'"><a class="page-link"  href="#">&langle;</a></li>
+                    <li class="page-item active"><a class="page-link"  href="#">1</a>
+                    </li>
+                <li class="page-item" th:class="${responseDTO.next_page_flag} ? '' : 'disabled'"><a class="page-link" href="#">&rang;</a></li>
+                <li class="page-item"><a class="page-link" href="#">&rang; &rang;</a></li>
+            </ul>
+        </nav>
+    </div>
+
+</div>

@@ -45,15 +45,15 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
             BooleanBuilder bb = new BooleanBuilder();
             for(String category : searchCategory) {
                 switch(category) {
-                    case "title":
+                    case "t":
                         bb.or(boardQ.title.like("%"+searchWord+"%"));
 //                        bb.or(boardQ.title.containsIgnoreCase("%"+searchWord+"%"));
 //                        bb.or(boardQ.title.contains("%"+searchWord+"%"));  // 대소문자구분
                         break;
-                    case "content":
+                    case "c":
                         bb.or(boardQ.content.like("%"+searchWord+"%"));
                         break;
-                    case "memberId":
+                    case "m":
                         bb.or(boardQ.memberId.like("%"+searchWord+"%"));
                         break;
                 }

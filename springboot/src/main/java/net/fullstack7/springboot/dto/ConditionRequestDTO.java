@@ -1,5 +1,7 @@
 package net.fullstack7.springboot.dto;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,8 +20,18 @@ import java.net.URLEncoder;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ConditionRequestDTO {
-    private int page_no;
-    private int page_size;
+    @Builder.Default
+    @Positive
+    @Min(1)
+    private int page_no = 1;
+    @Builder.Default
+    @Positive
+    @Min(1)
+    private int page_size = 10;
+    @Builder.Default
+    @Positive
+    @Min(1)
+    private int page_block_size = 10;
 
     private String search_type;
     private String search_word;
@@ -32,7 +44,7 @@ public class ConditionRequestDTO {
     }
 
     public Pageable getPageable(String...params){
-        return PageRequest.of(this.page_no -1, this.page_size, Sort.by(params).ascending());
+        return PageRequest.of(this.page_no -1, this.page_size, Sort.by(params).descending());
     }
 
     public String getReturnLink() {

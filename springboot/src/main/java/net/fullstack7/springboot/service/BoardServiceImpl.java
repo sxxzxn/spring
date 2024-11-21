@@ -5,10 +5,15 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import net.fullstack7.springboot.domain.Board;
 import net.fullstack7.springboot.dto.BoardDTO;
+import net.fullstack7.springboot.dto.ConditionRequestDTO;
+import net.fullstack7.springboot.dto.ConditionResponseDTO;
 import net.fullstack7.springboot.repository.BoardRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -44,5 +49,20 @@ public class BoardServiceImpl implements BoardServiceIf{
     @Override
     public void delete(int idx) {
         boardRepository.deleteById(idx);
+    }
+
+    @Override
+    public ConditionResponseDTO<BoardDTO> list(ConditionRequestDTO conditionDTO) {
+        String[] search_type = conditionDTO.getSearch_type();
+        String search_word = conditionDTO.getSearch_word();
+        Pageable pageable = conditionDTO.getPageable("idx");
+        Page<Board> result = boardRepository.search2(pageable, search_type, search_word);
+        List<BoardDTO> dtoList = result.getContent().stream().map(board -> modelMapper.map(board, BoardDTO.class)).toList();
+
+        return ConditionResponseDTO.<BoardDTO>withAll()
+                .conditionRequestDTO(conditionDTO)
+                .total_count((int)result.getTotalElements())
+                .dtoList(dtoList)
+                .build();
     }
 }
