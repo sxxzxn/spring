@@ -13,4 +13,7 @@ public interface BoardServiceIf {
     public void delete(int idx);
     public ConditionResponseDTO<BoardDTO> list(ConditionRequestDTO conditionDTO);
 
+
+    
+
 }
